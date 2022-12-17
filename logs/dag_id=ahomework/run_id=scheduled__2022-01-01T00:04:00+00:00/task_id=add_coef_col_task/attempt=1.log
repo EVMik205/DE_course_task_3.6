@@ -1,0 +1,48 @@
+[2022-12-17T04:34:41.961+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: ahomework.add_coef_col_task scheduled__2022-01-01T00:04:00+00:00 [queued]>
+[2022-12-17T04:34:41.967+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: ahomework.add_coef_col_task scheduled__2022-01-01T00:04:00+00:00 [queued]>
+[2022-12-17T04:34:41.968+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-17T04:34:41.968+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2022-12-17T04:34:41.968+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-17T04:34:41.977+0000] {taskinstance.py:1304} INFO - Executing <Task(PostgresOperator): add_coef_col_task> on 2022-01-01 00:04:00+00:00
+[2022-12-17T04:34:41.984+0000] {standard_task_runner.py:55} INFO - Started process 1751 to run task
+[2022-12-17T04:34:41.986+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'ahomework', 'add_coef_col_task', 'scheduled__2022-01-01T00:04:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/ahomework.py', '--cfg-path', '/tmp/tmp2ti9tjcu']
+[2022-12-17T04:34:41.986+0000] {standard_task_runner.py:83} INFO - Job 35: Subtask add_coef_col_task
+[2022-12-17T04:34:42.042+0000] {task_command.py:389} INFO - Running <TaskInstance: ahomework.add_coef_col_task scheduled__2022-01-01T00:04:00+00:00 [running]> on host 4bef348da8d6
+[2022-12-17T04:34:42.094+0000] {taskinstance.py:1513} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=ahomework
+AIRFLOW_CTX_TASK_ID=add_coef_col_task
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-01T00:04:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-01-01T00:04:00+00:00
+[2022-12-17T04:34:42.095+0000] {sql.py:253} INFO - Executing: 
+			CREATE VIEW numbers_diff AS (
+			with sums AS (
+			SELECT id, value_1, value_2, SUM(value_1) OVER (ORDER BY id) AS s1, SUM(value_2) OVER (ORDER BY id) AS s2 FROM numbers_table
+			),
+			diff_t AS (
+			SELECT id, s1-s2 as diff FROM sums
+			)
+			SELECT s.id, s.value_1, s.value_2, d.diff FROM sums s
+			JOIN diff_t d ON s.id=d.id
+			);
+		
+[2022-12-17T04:34:42.101+0000] {base.py:73} INFO - Using connection ID 'pg_conn' for task execution.
+[2022-12-17T04:34:42.277+0000] {base.py:73} INFO - Using connection ID 'pg_conn' for task execution.
+[2022-12-17T04:34:42.283+0000] {sql.py:364} INFO - Running statement: 
+			CREATE VIEW numbers_diff AS (
+			with sums AS (
+			SELECT id, value_1, value_2, SUM(value_1) OVER (ORDER BY id) AS s1, SUM(value_2) OVER (ORDER BY id) AS s2 FROM numbers_table
+			),
+			diff_t AS (
+			SELECT id, s1-s2 as diff FROM sums
+			)
+			SELECT s.id, s.value_1, s.value_2, d.diff FROM sums s
+			JOIN diff_t d ON s.id=d.id
+			);
+		, parameters: None
+[2022-12-17T04:34:42.296+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=ahomework, task_id=add_coef_col_task, execution_date=20220101T000400, start_date=20221217T043441, end_date=20221217T043442
+[2022-12-17T04:34:42.317+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2022-12-17T04:34:42.338+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

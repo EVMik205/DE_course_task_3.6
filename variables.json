@@ -1,0 +1,5 @@
+{
+    "conn_id": "pg_conn",
+    "numbers_to_run": 5,
+    "random_filename": "dags/random_numbers.txt"
+}
