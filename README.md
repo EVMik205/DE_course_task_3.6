@@ -1,15 +1,30 @@
-Репозиторий домашней работы по Airflow (задача 3.6).
-* ```ahomework.py``` - исходный код DAG, реализующего задачи согласно заданию.
-* ```docker-compose.yaml``` - докер для запуска Airflow и Postgres
-* ```log``` - папка с логами Airflow.
-* ```variables.json``` - переменные Airflow
+# Тестовый репозиторий Airflow
+
+## Цель
+Проверить работу различных операторов Airflow, собрать тестовый конвейер.
+
+## Стек
+ * Airflow
+ * python
+ * sql
+ * docker
+
+## Файлы
+ * ```ahomework.py``` - исходный код DAG'ов
+ * ```docker-compose.yaml``` - конфигурация для docker-compose, поднимает Airflow и Postgres
+ * ```log``` - логи выполнения задач Airflow.
+ * ```variables.json``` - переменные Airflow
+
 Настройки Airflow стандартные (127.0.0.1:8080, airflow, airflow).
+
 Postgres запущен на порту host.docker.internal:5430, креды postgres, postgres; БД по умолчанию test.
+
 Имя подключения хранится в переменной Airflow conn_id.
+
 Переменная numbers_to_run - сколько раз запускать DAG; random_filename - имя файла,
 в котором будут сохраняться выводимые числа (чтобы не возиться с томами задаю в папке dags ("dags/random_numbers.txt)).
 
-Задачи и их назначение:
+## Задачи (DAG'и) Airflow и их назначение
 * bash_task - печать "Hello"
 * python_task - печать "world"
 * random2_print_task - генерирует два произвольных числа и печатает их
